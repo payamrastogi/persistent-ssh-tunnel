@@ -1,0 +1,15 @@
+[Unit]
+StartLimitIntervalSec=0
+Description=Persistent SSH Tunnel to from port 80 on this server to port 5000 on external server (for encrypted traffic)
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=5
+# Provide an user who you want to run your service with
+# to prevent permission denied (public key)
+User=[User]
+ExecStart=/usr/bin/ssh -NT -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R [REMOTE_PORT]:0.0.0.0:80 [SSH_USER]@[REMOTE_PUBLIC_IP]
+
+[Install]
+WantedBy=multi-user.target
