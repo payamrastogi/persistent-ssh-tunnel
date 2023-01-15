@@ -8,7 +8,7 @@ Restart=on-failure
 RestartSec=5
 # Provide an user who you want to run your service with
 # to prevent permission denied (public key)
-User=[User]
+User=[USER_TO_RUN_SERVICE]
 ExecStart=/usr/bin/ssh -NT -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R [REMOTE_PORT]:0.0.0.0:80 [SSH_USER]@[REMOTE_PUBLIC_IP]
 
 [Install]
